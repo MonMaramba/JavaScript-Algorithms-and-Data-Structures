@@ -1,0 +1,29 @@
+// Trees are data structures that consists of nodes in a parent-child relationship
+// Tree Terminology
+    // Root - The top node in a Tree
+    // Child - A node directly connected to another node when moving away from the root
+    // Parent - The converse notion of a child
+    // Siblings - A group of nodes with the same parent.
+    // Leaf - A node with no children
+    // Edge - The connection between one node and another.
+// Example use of a Tree    
+    // HTML DOM
+    // JSON
+    // Network Routing
+    // Abstract Syntax Tree
+    // Artificial Intelligence
+    // Folders in an operating systems(structure)
+
+// Binary Trees
+    // Each node can have a maximum of 2 nodes.
+
+// Binary Search Tree
+    //  2 children maximum
+    // Data is sorted in a particular order. (left side is less than parent node, right side children are greater than parent)
+    // Data can be compared.
+
+class BinarySearchTree {
+    constructor() {
+        
+    }
+}
