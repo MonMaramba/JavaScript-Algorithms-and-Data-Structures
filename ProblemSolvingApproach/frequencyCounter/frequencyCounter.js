@@ -1,34 +1,3 @@
-//for string and numbers
-function validAnagram(str1, str2) {
-  // add whatever parameters you deem necessary - good luck!
-  if (str1.length !== str2.length) {
-    return false;
-  }
-
-  const lookup = {};
-
-  for (let i = 0; i < str1.length; i++) {
-    let letter = str1[i];
-    //if letter exists, increment, otherwise set to 1
-    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
-  }
-  console.log(lookup);
-
-  for (let i = 0; i < str2.length; i++) {
-    let letter = str2[i];
-    //can't find letter or letter is zero, then it's not an anagram
-    if (!lookup[letter]) {
-      return false;
-    } else {
-      // if it is there, minus 1 to val. 0 will return false
-      lookup[letter] -= 1;
-    }
-  }
-  return true;
-}
-
-//console.log(validAnagram("anagrams", "nagaram"));
-
 // for arrays or objects
 function same(arr1, arr2) {
   if (arr1.length !== arr2.length) {
