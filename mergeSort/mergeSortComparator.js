@@ -1,5 +1,3 @@
-import { string } from "prop-types";
-
 // Sorting Exercise - merge helper
 
 // Given two sorted arrays, write a function called merge which accepts two sorted arrays and returns a new array with both of the values from each array sorted.
@@ -56,6 +54,20 @@ function merge(arr1, arr2, comparator = null) {
 
   return arr;
 }
+
+function mergeSort(array, comparator) {
+  if (typeof comparator !== "function") {
+    comparator = function(a, b) {
+      return a - b;
+    };
+  }
+  if (array.length <= 1) return array; // base case
+  let mid = Math.floor(array.length / 2);
+  let left = mergeSort(array.slice(0, mid), comparator);
+  let right = mergeSort(array.slice(mid), comparator);
+  return merge(left, right, comparator);
+}
+
 var arr1 = [1, 3, 4, 5];
 var arr2 = [2, 4, 6, 8];
 merge(arr1, arr2); //[1,2,3,4,4,5,6,8]

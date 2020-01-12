@@ -55,11 +55,11 @@ const merge = (arr1, arr2) => {
 
 // mergeSort proper pseudocode
 // Break up the array into halves until you have arrays that are empty or have one element
-// Once you have smaller sorted arrays, merge those arrays with other sorted arrays until you are back at the full length of the array
+// Once you have smaller sorted arrays, merge those arrays with other sorted arrays /// until you are back at the full length of the array
 // once the array has been merged back together, return the merged (and sorted) array
 
 function mergeSort(arr) {
-  if (arr.length <= 1) return arr; //base case
+  if (arr.length <= 1) return arr; // base case
   // To break the array into half
   let mid = Math.floor(arr.length / 2);
   let left = mergeSort(arr.slice(0, mid)); // recursive call to keep splitting until base case (arr.length = 1)
