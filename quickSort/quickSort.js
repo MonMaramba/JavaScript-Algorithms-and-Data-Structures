@@ -1,4 +1,7 @@
-function pivot(arr, start = 0, end = arr.length + 1) {
+// Like merge sort, quick sort texploits the fact that arrays of 1 element are always sorted(duh!)
+// Works by selecting one element (called 'pivot') and finding the index where the pivot should end up in the sorted array
+
+function pivot(arr, start = 0, end = arr.length - 1) {
   function swap(array, i, j) {
     var temp = array[i];
     array[i] = array[j];
@@ -8,7 +11,7 @@ function pivot(arr, start = 0, end = arr.length + 1) {
   var pivot = arr[start];
   var swapIdx = start;
 
-  for (var i = start + 1; i < arr.length; i++) {
+  for (var i = start + 1; i < end; i++) {
     if (pivot > arr[i]) {
       swapIdx++; //increase swapIdx to keep track of items greater than pivot
       swap(arr, swapIdx, i); // call for swap function
