@@ -115,5 +115,5 @@ class BinarySearchTree {
 }
 
 // Big O of BST
-// Insertion - O(log n)
-// Searching - o(log n)
+// Insertion - O(log n) - great!
+// Searching - o(log n) - great!

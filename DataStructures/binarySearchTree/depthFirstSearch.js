@@ -76,29 +76,17 @@ class BinarySearchTree {
     }
     return false;
   }
-  BFS() {
-    var node = this.root,
-      data = [],
-      queue = [];
-    queue.push(node);
 
-    while (queue.length) {
-      node = queue.shift();
-      data.push(node.value);
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-    return data;
-  }
   // DFS - PreOrder
   // Lends itself to easily reconstructing or copying the tree.
   // Like "exporting" the tree
   DFSPreOrder() {
     var data = [];
+    var current = this.root;
     function traverse(node) {
       data.push(node.value);
       if (node.left) traverse(node.left);
-      if (node.rigth) traverse(node.right);
+      if (node.right) traverse(node.right);
     }
     traverse(this.root);
     return data;
