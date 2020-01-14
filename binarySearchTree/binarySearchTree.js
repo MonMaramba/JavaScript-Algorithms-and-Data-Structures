@@ -37,32 +37,36 @@ class BinarySearchTree {
   // Iterative solution
   //   insert(val) {
   //     var newNode = new Node(val);
-  //     if (!this.root) {
+  //     if (this.root === null) {
   //       this.root = newNode;
-  //     } else {
+  //       return this;
+  //     }
   //       var current = this.root;
   //       while (true) {
+  //         //to check for duplicate values
+  //         if(value === current.value) return undefined;
   //         if (val < current.value) {
   //           if(current.left === null) {
   //               current.left = newNode;
-  //           } else {
+  //               return this;
+  //           }  // if there is already a node on the left
+  //              the current pointer will be moved to existing left node
   //               current = current.left;
-  //           }
-  //           } else if(val > current.value) {
-  //               if(current.right === null) {
+  //           } else {if(val > current.value) {
+  //               if(current.right === null)  {
   //                   current.right = newNode;
-  //               } else {
+  //                   return this;
+  //               }
   //                   current = current.right;
   //               }
   //           }
   //         }
-  //       }
   //     }
   // Recursive solution
   insert(value) {
     var newNode = new Node(value);
     if (traverse(this.root)) this.root = newNode;
-
+    // helper traverse function
     function traverse(current) {
       if (current === null) return true;
 
@@ -75,6 +79,7 @@ class BinarySearchTree {
     }
     return this;
   }
+  // find() will return the value
   find(val) {
     if (!this.root) return false;
     var current = this.root,
@@ -90,6 +95,22 @@ class BinarySearchTree {
     }
     if (!found) return false;
     return current;
+  }
+  // contain() will return true or false
+  contains(val) {
+    if (!this.root) return false;
+    var current = this.root,
+      found = false;
+    while (current && !found) {
+      if (val < current.value) {
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
