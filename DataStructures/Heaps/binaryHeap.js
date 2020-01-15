@@ -6,6 +6,10 @@
 // Values are not ordered.
 // No implied ordering between siblings. No connection at all
 // A binary heap is as compact as possible. All the children of each node are as full as can be and left children are filled out first
+// For any index of an array n...
+// The left child is stored at 2n + 1
+// The right child is at 2n + 2
+
 class MaxBinaryHeap {
   constructor() {
     this.values = [];
@@ -14,10 +18,13 @@ class MaxBinaryHeap {
     this.values.push(element);
     this.bubbleUp();
   }
+  // helper function to order nodes as nodes can only be inserted from the end
+  // if a large value is inserted, the heap needs to be re-ordered
   bubbleUp() {
     let idx = this.values.length - 1;
     const element = this.values[idx];
     while (idx > 0) {
+      // finding the parent is the inverse of the formula above
       let parentIdx = Math.floor((idx - 1) / 2);
       let parent = this.values[parentIdx];
       if (element <= parent) break;
@@ -32,43 +39,46 @@ class MaxBinaryHeap {
   extractMax() {
     const max = this.values[0];
     const last = this.values.pop();
-    if(this.values.length > 0){
-        this.values[0] = last;
-        this.sinkDown();
+    this.values[0] = last;
+    if (this.values.length > 0) {
+      this.sinkDown();
     }
-    
     return max;
   }
+
   sinkDown() {
-      let idx = 0,
-      const length = this.values.length;
-      const element = this.values[0];
-      while(true){
-          let leftChildIdx = 2 * idx + 1;
-          let rightChildIdx = 2 * idx + 2;
-          let leftChild, rightChild;
-          let swap = null;
-        if(leftChildIdx < length) {
-            leftChild = this.values[leftChildIdx];
-            if (leftChild > element) {
-             // to keep track of swappable index
-                swap = leftChildIdx;
-            }
-        } 
-        if(rightChildIdx < length) {
-            rightChild = this.value[rightChildIdx]
-            if((swap === null && rightChild > element) ||
-                (swap !== null & rightChild > leftChild)
-            ) {
-                swap = rightChildIdx;
-            }
+    let idx = 0,
+      length = this.values.length,
+      element = this.values[0];
+    while (true) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+      let leftChild, rightChild;
+      let swap = null;
+      if (leftChildIdx < length) {
+        // checks that the leftChildIdx is not outside of the array
+        leftChild = this.values[leftChildIdx];
+        if (leftChild > element) {
+          // to keep track of swappable index
+          swap = leftChildIdx;
         }
-          if(swap === null) break;
-          this.values[idx] = this.values[swap];
-          this.values[swap] = element;
-          // To follow the index and compare to it's children
-          idx = swap; 
       }
+      if (rightChildIdx < length) {
+        // checks that the rightChildIdx is not outside of the array
+        rightChild = this.values[rightChildIdx];
+        if (
+          (swap === null && rightChild > element) ||
+          (swap !== null) & (rightChild > leftChild)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+      if (swap === null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
+      // To follow the index and compare to it's children
+      idx = swap;
+    }
   }
 }
 
