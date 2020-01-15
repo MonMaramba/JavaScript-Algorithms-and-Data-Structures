@@ -7,7 +7,8 @@ function getDigit(num, i) {
 }
 // console.log(getDigit(7485, 2)); // will return 4
 //Math.abs will return only positive numbers to ensure function works on negative arguments.
-//Math.abs(num) [means 7485] / Math.pow(10, i)[means 100] = 7485 / 100 = 74.85
+// Math.abs(num) [means 7485] converts to positive -
+// Math.pow(10, i)[means 100] = 7485 / 100 = 74.85
 //Math.floor will give 74
 // 74 % 10 = remainder 4 will be the answer
 
@@ -56,6 +57,7 @@ function radixSort(nums) {
   let maxDigitCount = mostDigits(nums); // should return most digits from parameter
   for (let k = 0; k < maxDigitCount; k++) {
     // should keep going until maxDigitCount
+
     let digitBuckets = Array.from({ length: 10 }, () => []); // creates 10 empty arrays
     // loops over nums argument
     for (let i = 0; i < nums.length; i++) {
