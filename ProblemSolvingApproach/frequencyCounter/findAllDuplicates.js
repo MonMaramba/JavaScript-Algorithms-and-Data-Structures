@@ -1,4 +1,4 @@
-// Frequency Counter - findAllDuplicates
+// Frequency Counter - findDuplicates
 // Given an array of positive integers, some elements appear twice and other once.
 // Find all the elements that appear twice in this array
 // Elements can be returned in any order
