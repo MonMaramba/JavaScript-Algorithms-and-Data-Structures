@@ -26,6 +26,7 @@ class Graph {
     // removing the vertex
     delete this.adjacencyList[vertex];
   }
+
   breadthFirstSearch(start) {
     const queue = [start];
     const result = [];
