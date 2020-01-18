@@ -34,7 +34,8 @@ class Graph {
   }
   removeVertex(vertex) {
     if (!this.adjacencyList[vertex]) return undefined;
-    while (this.adjacencyList[vertex]) {
+    // while the vertex still has edges
+    while (this.adjacencyList[vertex].lengthcd) {
       // pop() will return item removed from array
       const adjacentVertex = this.adjacencyList[vertex].pop();
       // item removed will now be 2nd argument to removeEdge()
