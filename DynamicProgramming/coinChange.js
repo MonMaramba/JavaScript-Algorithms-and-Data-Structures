@@ -27,4 +27,4 @@ function coinChange(denominations, amount) {
   return combinations[amount];
 }
 
-const denominations = [1, 5, 10, 25];
+const denominations = [1, 5, 10, 25, 50];

@@ -51,7 +51,7 @@ class WeightedGraph {
     const distances = {};
     // quickest path to vertices
     const previous = {};
-    let path = [];
+    let path = []; // to return at end
     let smallest;
 
     // build up initial state
@@ -68,13 +68,16 @@ class WeightedGraph {
     // as long as there is something to visit
     while (nodes.values.length) {
       smallest = nodes.dequeue().val;
+      // base case, we are done
       if (smallest === finish) {
-        // build path to finish vertex and return that object
+        // build up path to finish vertex and return that object
         while (previous[smallest]) {
           path.push(smallest);
           smallest = previous[smallest];
         }
+        break;
       }
+      //building up path to return at the end
       if (smallest || distances[smallest] !== Infinity) {
         for (let neighbor in this.adjacencyList[smallest]) {
           // to find neighboring node
@@ -109,9 +112,10 @@ graph.addVertex("F");
 graph.addEdge("A", "B", 4);
 graph.addEdge("A", "C", 2);
 graph.addEdge("B", "E", 3);
-graph.addEdge("C", "D", 3);
-graph.addEdge("C", "F", 3);
+graph.addEdge("C", "D", 2);
+graph.addEdge("C", "F", 4);
 graph.addEdge("D", "E", 3);
-graph.addEdge("D", "F", 3);
-graph.addEdge("E", "F", 3);
-graph.Dijkstra("A", "E");
+graph.addEdge("D", "F", 1);
+graph.addEdge("E", "F", 1);
+
+graph.Dijkstra("A", "E"); //
