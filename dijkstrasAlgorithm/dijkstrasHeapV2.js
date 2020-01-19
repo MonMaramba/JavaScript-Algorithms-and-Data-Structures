@@ -63,9 +63,12 @@ class WeightedGraph {
         }
       }
     }
+    console.log(path.concat(smallest).reverse());
     return path.concat(smallest).reverse();
   }
 }
+
+// The priority queue class was upgraded into a binary heap priority queue
 
 class PriorityQueue {
   constructor() {
