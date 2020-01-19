@@ -1,6 +1,21 @@
 // One of the most famous and widely used algorithms
 // Finds the shortest path between two vertices on a graph
 // Used for GPS, biology, airline booking, traffic routing, etc
+
+// Dijkstra's Pseudocode
+// This function should accept a starting and ending vertex
+// Create an object(distances) and set each key to be every vertexin the adjacency list with a value of infinity, except for the starting vertex which should have a value of 0.
+// After setting a value in the distances object, add each vertex with a priority of 0 because that's where we begin.
+// Create another object called previous and set each key to be every vertex in the adjacency list wih a value of null.
+// Start looping as long as there is anything in the priority queue
+//      dequeue a vertex from the priority queue
+//      if that vertex is the same as the ending vertex - we are done!
+//      Otherwise, loop through each value in the adjacency list at that vertex
+//        Calculate the distance to that vertex from the starting vertex
+//        If the distance is less than what is currently stored in our distances object
+//            Update the distances object with new lower distance
+//            Update the previous object to contain that vertex
+//            enqueue the vertex with the total distance from the start node
 class PriorityQueue {
   constructor() {
     this.values = [];
@@ -22,9 +37,11 @@ class WeightedGraph {
     this.adjacencyList = {};
   }
   addVertex(vertex) {
+    // adds an empty array as the key's value
     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
   }
   addEdge(vertex1, vertex2, weight) {
+    // edge should look like A: Array [0: {node:"B", weight: 9}]
     this.adjacencyList[vertex1].push({ node: vertex2, weight });
     this.adjacencyList[vertex2].push({ node: vertex1, weight });
   }
@@ -59,7 +76,7 @@ class WeightedGraph {
         }
       }
       if (smallest || distances[smallest] !== Infinity) {
-        for (neighbor in this.adjacencyList[smallest]) {
+        for (let neighbor in this.adjacencyList[smallest]) {
           // to find neighboring node
           let nextNode = this.adjacencyList[smallest][neighbor];
           // calculate new distance to neighboring node
@@ -76,6 +93,7 @@ class WeightedGraph {
         }
       }
     }
+    console.log(path.concat(smallest).reverse());
     return path.concat(smallest).reverse();
   }
 }
@@ -96,3 +114,4 @@ graph.addEdge("C", "F", 3);
 graph.addEdge("D", "E", 3);
 graph.addEdge("D", "F", 3);
 graph.addEdge("E", "F", 3);
+graph.Dijkstra("A", "E");

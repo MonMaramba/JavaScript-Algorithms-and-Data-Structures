@@ -26,14 +26,14 @@ class Graph {
     // removing the vertex
     delete this.adjacencyList[vertex];
   }
-
+  // lecture version
   breadthFirstSearch(start) {
     const queue = [start];
     const result = [];
     const visited = {};
     let currentVertex;
-
     visited[start] = true;
+
     while (queue.length) {
       currentVertex = queue.shift();
       result.push(currentVertex);
@@ -44,8 +44,33 @@ class Graph {
           queue.push(neighbor);
         }
       });
-      return result;
     }
+    console.log(result);
+    return result;
+  }
+  breadthFirstSearchRecursive(start) {
+    const results = [];
+    const visited = {};
+    const queue = [start];
+
+    visited[start] = true;
+
+    let helper = () => {
+      if (queue.length) {
+        let current = queue.shift();
+        results.push(current);
+        this.adjacencyList[current].forEach(vertex => {
+          if (!visited[vertex]) {
+            visited[vertex] = true;
+            queue.push(vertex);
+          }
+        });
+        helper();
+      }
+    };
+    helper();
+    console.log(results);
+    return results;
   }
 }
 
@@ -63,3 +88,38 @@ g.addEdge("C", "E");
 g.addEdge("D", "E");
 g.addEdge("D", "F");
 g.addEdge("E", "F");
+
+g.breadthFirstSearch("A");
+
+var graph = new Graph();
+
+graph.addVertex("S");
+graph.addVertex("P");
+graph.addVertex("U");
+graph.addVertex("X");
+graph.addVertex("Q");
+graph.addVertex("Y");
+graph.addVertex("V");
+graph.addVertex("R");
+graph.addVertex("W");
+graph.addVertex("T");
+graph.addEdge("S", "P");
+graph.addEdge("S", "U");
+graph.addEdge("P", "X");
+graph.addEdge("U", "X");
+
+graph.addEdge("P", "Q");
+graph.addEdge("V", "V");
+graph.addEdge("X", "Q");
+graph.addEdge("X", "Y");
+graph.addEdge("X", "V");
+
+graph.addEdge("Q", "R");
+graph.addEdge("Y", "R");
+graph.addEdge("Y", "W");
+graph.addEdge("V", "W");
+
+graph.addEdge("R", "T");
+graph.addEdge("W", "T");
+
+graph.breadthFirstSearchRecursive("S");
