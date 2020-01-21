@@ -9,6 +9,29 @@
 // Empty list is considered to have zero greatest sum.
 // Note that the empty list or array is also a valid sublist/subarray.
 
+// Brute force solution
+
+var maxSequence = function(arr) {
+  // ...
+  const arrSum = arr => arr.reduce((a, b) => a + b, 0);
+  if (arrSum === 0 || arr.length === 0) {
+    return 0;
+  }
+  var max = 0;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i + 1; j < arr.length + 1; j++) {
+      var subArray = arr.slice(i, j);
+      var subSum = subArray.reduce(function(subele, sum) {
+        return (sum += subele);
+      }, 0);
+      if (subSum > max) {
+        max = subSum;
+      }
+    }
+  }
+  return max;
+};
+
 var maxSequence = function(arr) {
   let maxSum = 0;
   let currentSum = 0;
