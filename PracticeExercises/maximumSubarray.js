@@ -17,30 +17,30 @@ var maxSequence = function(arr) {
   if (arrSum === 0 || arr.length === 0) {
     return 0;
   }
-  var max = 0;
+  var maxSum = 0;
   for (var i = 0; i < arr.length; i++) {
     for (var j = i + 1; j < arr.length + 1; j++) {
       var subArray = arr.slice(i, j);
-      var subSum = subArray.reduce(function(subele, sum) {
-        return (sum += subele);
+      var subSum = subArray.reduce(function(subEl, sum) {
+        return (sum += subEl);
       }, 0);
-      if (subSum > max) {
-        max = subSum;
+      if (subSum > maxSum) {
+        maxSum = subSum;
       }
     }
   }
-  return max;
+  return maxSum;
 };
 
-var maxSequence = function(arr) {
-  let maxSum = 0;
-  let currentSum = 0;
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    currentSum = Math.max(0, currentSum + arr[i]);
-    maxSum = Math.max(maxSum, currentSum);
-  }
-  return maxSum;
+// Best solution found...  something that I understand anyways :)
+var maxSequenceBestAnswer = function(arr) {
+  var max = 0;
+  var cur = 0;
+  arr.forEach(function(i) {
+    cur = Math.max(0, cur + i);
+    max = Math.max(max, cur);
+  });
+  return max;
 };
 
 maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]); // 6: [4,-1,2,1]
